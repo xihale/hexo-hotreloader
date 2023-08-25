@@ -1,0 +1,21 @@
+{
+  "name": "hexo-hotrealoader",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "xihale",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xihale/hexo-hotrealoader"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hotrealoader",
+    "hexo"
+  ],
+  "devDependencies": {
+    "eslint": "^8.46.0"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}
