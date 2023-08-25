@@ -1,6 +1,8 @@
 "use struct";
 
-if(hexo.env.cmd !== "s") return;
+if((hexo.env.cmd !== "s" && hexo.env.cmd !== "server")|| hexo.config.hotreloader?.enable!==true) return;
+
+const {frontend}=require("./frontend.js");
 
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 3000 });
@@ -24,7 +26,7 @@ hexo.extend.filter.register(
     // 发送信息给客户端 
     if(ws_clients.hasOwnProperty(data?.title)){
       ws_clients[data?.title].forEach(ws=>ws.send(data.content));
-    }
+    }else data.content+="<script>"+frontend+"</script>";
     return data;
   },
   30
