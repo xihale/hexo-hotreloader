@@ -2,12 +2,15 @@
 
 if((hexo.env.cmd !== "s" && hexo.env.cmd !== "server")|| hexo.config.hotreloader?.enable!==true) return;
 
-const {frontend}=require("./frontend.js");
+const {frontEnd}=require("./frontEnd.js");
+
+var port=3000;
+if(hexo.config.hotreloader?.port) port=hexo.config.hotreloader.port;
 
 const WebSocket = require("ws");
-const wss = new WebSocket.Server({ port: 3000 });
+const wss = new WebSocket.Server({ port: port });
 
-console.log("hexo-hotreloader listening on ws://localhost:3000");
+console.log(`hexo-hotreloader listening on ws://localhost:${port}`);
 
 var ws_clients={}, cnt={};
 
@@ -25,7 +28,7 @@ hexo.extend.filter.register(
   "after_post_render",
   data=>{
     if(ws_clients.hasOwnProperty(data?.title)){
-      ws_clients[data?.title].forEach(ws=>{
+      ws_clients[data.title].forEach(ws=>{
         try{
           ws.send(data.content)
         }catch(_){ // connection closed 
@@ -33,7 +36,7 @@ hexo.extend.filter.register(
         }
       });
     }
-    if(cnt[data?.title]===undefined || cnt[data?.title]===0) data.content+="<script>"+frontend+"</script>";
+    if(cnt[data?.title]===undefined || cnt[data?.title]===0) data.content+="<script>"+frontEnd.toString()+`hotReloader(${port})</script>`;
     return data;
   },
   30
