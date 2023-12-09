@@ -24,6 +24,6 @@ hotreload:
 
 ### Bugs
 
-If it's not working, you can try to modifly your content or run `hexo clean` to trigger the hexo's uploader event.
+If it's not working, try to refresh the page once again.
 
-If it's still not working, refresh the page and server then try again.
+If it still not working, please try to restart the server or [open an issue](https://github.com/xihale/hexo-hotreloader/issues)
