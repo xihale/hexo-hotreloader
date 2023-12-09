@@ -1,6 +1,6 @@
 {
   "name": "hexo-hotreloader",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "author": "xihale",
   "repository": {
@@ -13,6 +13,7 @@
     "hexo"
   ],
   "devDependencies": {
+    "@types/hexo": "^3.8.12",
     "eslint": "^8.46.0"
   },
   "dependencies": {
